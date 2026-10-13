@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="el">
 <head>
-<!-- Christos S Magides · cyp11111@gmail.com · Έκδοση 12-10-2026 20:15 · All rights reserved -->
+<!-- Christos S Magides · cyp11111@gmail.com · Έκδοση 13-10-2026 11:30 · All rights reserved -->
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Flip Album</title>
@@ -254,7 +254,7 @@
 <div class="sig-block" style="text-align:center;color:var(--cream-dim);font-size:16px;padding:30px 20px 10px 20px;line-height:1.7;">
   <b style="color:var(--gold);font-size:18px;">Christos S Magides</b> · <a href="mailto:cyp11111@gmail.com" style="color:var(--gold);text-decoration:none;">cyp11111@gmail.com</a><br>
   © Christos S Magides — Με επιφύλαξη παντός δικαιώματος (All rights reserved)<br>
-  Έκδοση 12-10-2026 20:15
+  Έκδοση 13-10-2026 11:30
 </div>
 </div>
 </div>
@@ -420,7 +420,7 @@ const translations = {
     groupByPersonThisFolder: n => `🧑 Group faces in this folder (${n} photos)`
   }
 };
-let currentLang = localStorage.getItem('flipAlbumLang') || 'el';
+let currentLang = (function(){ try{ const v = localStorage.getItem('flipAlbumLang'); if (v === 'el' || v === 'en') return v; }catch(e){} return /^el/i.test(navigator.language || 'el') ? 'el' : 'en'; })(); // 13-10-2026: γλώσσα επισκέπτη
 function t(key, ...args){
   const val = translations[currentLang][key];
   return typeof val === 'function' ? val(...args) : val;
@@ -443,6 +443,7 @@ function applyStaticTranslations(){
   document.getElementById('txtFrameToggle').textContent = t('frameLabel');
   document.getElementById('txtPerPageLabel').textContent = t('perPageLabel');
   document.documentElement.lang = currentLang;
+  document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.dataset.lang === currentLang));
   loadRecentAlbums();
   const gbpBtn = document.getElementById('groupByPersonBtn');
   if (gbpBtn) gbpBtn.textContent = groupByPersonActive ? t('groupByPersonBack') : t('groupByPerson');
