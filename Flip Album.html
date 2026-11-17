@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="el">
 <head>
-<!-- Christos S Magides · cyp11111@gmail.com · Έκδοση 13-10-2026 11:30 · All rights reserved -->
+<!-- Christos S Magides · Έκδοση 13-10-2026 11:30 · All rights reserved -->
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Flip Album</title>
@@ -252,7 +252,7 @@
   <div class="unsupported" id="unsupportedMsg" style="display:none;"></div>
   <div id="buildingMsg" style="display:none; color:var(--cream-dim);"></div>
 <div class="sig-block" style="text-align:center;color:var(--cream-dim);font-size:16px;padding:30px 20px 10px 20px;line-height:1.7;">
-  <b style="color:var(--gold);font-size:18px;">Christos S Magides</b> · <a href="mailto:cyp11111@gmail.com" style="color:var(--gold);text-decoration:none;">cyp11111@gmail.com</a><br>
+  <b style="color:var(--gold);font-size:18px;">Christos S Magides</b> · <a href="#" data-grapse-mou style="color:var(--gold);text-decoration:none;">✏️ Γράψε μου</a><br>
   © Christos S Magides — Με επιφύλαξη παντός δικαιώματος (All rights reserved)<br>
   Έκδοση 13-10-2026 11:30
 </div>
@@ -1903,5 +1903,16 @@ function getMinPhotosPerPerson(){
   });
 })();
 </script>
+<script>/* ✏️ Γράψε μου — Christos S Magides — έκδοση 16-11-2026 */
+(function(){
+var L={el:["Γράψε μου","Μήνυμα από","Γεια σας κύριε Χρίστο,"],en:["Write to me","Message from","Hello Mr Christos,"]};
+function lg(){var l=(document.documentElement.lang||navigator.language||"el").slice(0,2).toLowerCase();return L[l]?l:"en"}
+function paint(){var q=document.querySelectorAll("[data-grapse-mou]");for(var i=0;i<q.length;i++){var t="\u270F\uFE0F "+L[lg()][0];if(q[i].textContent!==t)q[i].textContent=t}}
+document.addEventListener("click",function(e){var a=e.target&&e.target.closest&&e.target.closest("[data-grapse-mou]");if(!a)return;e.preventDefault();
+var t=L[lg()],n=document.title||location.hostname;
+location.href="mailto:"+["cyp","11111"].join("")+"@"+["gmail","com"].join(".")+"?subject="+encodeURIComponent(t[1]+": "+n)+"&body="+encodeURIComponent(t[2]+"\n\n")});
+if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",paint);else paint();
+try{new MutationObserver(paint).observe(document.documentElement,{attributes:true,attributeFilter:["lang"]})}catch(e){}
+})();</script>
 </body>
 </html>
